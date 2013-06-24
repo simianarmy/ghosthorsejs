@@ -1,0 +1,23 @@
+{
+  "name": "waver",
+  "version": "0.0.3",
+  "description": "A simple and lightning fast library for reading wave-pcm audio files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Warning: no test specified\" && exit 0"
+  },
+  "keywords": [
+    "wave",
+    "pcm",
+    "audio"
+  ],
+  "author": "Artur Monteiro <amonteiro@orkesta.es>",
+  "license": "BSD",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rybnik/waver.git"
+  },
+  "dependencies": {
+    "async": "~0.2.5"
+  }
+}
