@@ -7,8 +7,8 @@ function GhostHorseClient () {
     this._processed = {};
     this._audioContext;
 
-    this.init = function () {
-        self.setupBayeuxHandlers();
+    this.init = function (settings) {
+        self.setupBayeuxHandlers(settings);
 
         try {
             // Fix up for prefixing
@@ -20,9 +20,11 @@ function GhostHorseClient () {
         }
     };
 
-    this.setupBayeuxHandlers = function () {
+    this.setupBayeuxHandlers = function (settings) {     
         // Node server is on the same host:port
-        self.client = new Faye.Client('/faye', {
+        var host = settings.host + ':' + settings.port;
+
+        self.client = new Faye.Client(host + '/faye', {
             timeout: 120
         });
 
@@ -30,8 +32,22 @@ function GhostHorseClient () {
         self.client.subscribe('/horsemouth', self._processHorseMessage.bind(self));
 
         // self.client.subscribe('/horsemauger', function () {});
-    };
-    this.init();
+    }
+    this._createEventHandlers();
+
+    soundManager.setup({
+        url: '/swf',
+        flashVersion: 9, // optional: shiny features (default = 8)
+        // optional: ignore Flash where possible, use 100% HTML5 mode
+        // preferFlash: false,
+        onready: function() {
+            console.log(')<>( audio ready!');
+            // Ready to use; soundManager.createSound() etc. can now be called.
+        }
+    });
+    jQuery.getJSON('/config.json', function(data) {
+        self.init(data);
+    });
 }
 
 /**
@@ -61,8 +77,24 @@ GhostHorseClient.prototype._processTweets = function (data) {
     data.forEach(function (t) {
         console.log('playing audio ' + t.audioFile);
         // only show first word haha!
-        $('#audio').append('<li><a href="' + t.audioFile + '" target="_new">' + t.text.split(' ')[0] + '</a></li>');
-        self._processed[t.id] = true;
+        $('#audio').append('<li><a class="horse" data-id="' + t.id + '" href="javascript:void(0);"><img src="/images/horse-js.png" width="250" height="250" /></a></li>');
+        self._processed[t.id] = t;
+    });
+};
+
+GhostHorseClient.prototype._createEventHandlers = function () {
+    var self = this;
+
+    jQuery('ul#audio').on('click', 'a.horse', function (el) {
+        var tid = $(el.currentTarget).data('id'),
+            t = self._processed[tid];
+
+        console.log('tweet ', t);
+        var mySound = soundManager.createSound({
+            id: tid,
+            url: t.audioFile
+        });
+        mySound.play();
     });
 };
 
@@ -76,6 +108,6 @@ GhostHorseClient.prototype._onAudioLoaded = function (bufferList) {
 
 var ghClient;
 
-$(document).ready(function() {
+jQuery(function () {
    ghClient = new GhostHorseClient();
 });
