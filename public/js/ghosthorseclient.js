@@ -41,8 +41,8 @@ function GhostHorseClient () {
         // optional: ignore Flash where possible, use 100% HTML5 mode
         // preferFlash: false,
         onready: function() {
-            console.log(')<>( audio ready!');
             // Ready to use; soundManager.createSound() etc. can now be called.
+            soundManager.createSound({url: '/audio/649282_SOUNDDOGS__an.mp3'}).play();
         }
     });
     jQuery.getJSON('/config.json', function(data) {
@@ -70,14 +70,21 @@ GhostHorseClient.prototype._processHorseMessage = function (message) {
 };
 
 GhostHorseClient.prototype._processTweets = function (data) {
-    var self = this;
+    var self = this,
+        urls = data.map(function (t) {
+            return t.audioFile;
+        });
 
-    // Use this for html5 audio coolness.  until then we can just use Audio
+    // Use this for html5 audio coolness.
     //(new BufferLoader(this._audioContext, urls, this._onAudioLoaded.bind(this))).load();
+   
+    // Traditional html5 audio used here
     data.forEach(function (t) {
-        console.log('playing audio ' + t.audioFile);
-        // only show first word haha!
-        $('#audio').append('<li><a class="horse" data-id="' + t.id + '" href="javascript:void(0);"><img src="/images/horse-js.png" width="250" height="250" /></a></li>');
+        var node = $('#litemplate').clone();
+        $('a.horse', node).data('id', t.id);
+        $('p.quote', node).text(t.text.split(' ')[0]);
+        // only show first word? 
+        $('#audio').prepend(node);
         self._processed[t.id] = t;
     });
 };
@@ -86,24 +93,32 @@ GhostHorseClient.prototype._createEventHandlers = function () {
     var self = this;
 
     jQuery('ul#audio').on('click', 'a.horse', function (el) {
-        var tid = $(el.currentTarget).data('id'),
+        var el = $(el.currentTarget),
+            tid = el.data('id'),
             t = self._processed[tid];
 
         console.log('tweet ', t);
-        var mySound = soundManager.createSound({
+        soundManager.createSound({
             id: tid,
-            url: t.audioFile
-        });
-        mySound.play();
+            url: t.audioFile,
+            onfinish: function () {
+                // display full text
+                $('p.quote', el.parent()).text(t.text).show();
+            }
+        }).play();
     });
 };
 
 GhostHorseClient.prototype._onAudioLoaded = function (bufferList) {
-    // We have multiple audio buffers...play one at a time?
-    var source = context.createBufferSource();
-    source.buffer = bufferList[0]; 
-    source.connect(this._audioContext.destination);
-    source.start(0);
+    var self = this;
+
+    // We have multiple audio buffers... 
+    bufferList.forEach(function (buffer) {
+        var source = self._audioContext.createBufferSource();
+        source.buffer = buffer;
+        source.connect(self._audioContext.destination);
+        source.start(0);
+    });
 };
 
 var ghClient;

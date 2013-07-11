@@ -1,8 +1,10 @@
+body {
+    font-family: 'Cutive Mono', serif;
+}
 ul#audio {
     list-style: none;
 }
 ul#audio li {
-    font-size: 1.3em
-    font-family: Futura;
+    font-size: 1.5em
     margin: 10px
 }
