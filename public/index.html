@@ -7,16 +7,17 @@
     </head>
     <body>
         HORSEJS
-        <ul id="audio"></ul>
-        <script src="/js/soundmanager2-nodebug-jsmin.js"></script>
-        <script type="text/javascript" src="/faye/client.js"></script>
-        <script type="text/javascript" src="/js/bufferloader.js"></script>
-        <script type="text/javascript" src="/js/ghosthorseclient.js"></script>
-        <li id="litemplate">
+        <ul id="audio">
+            <li id="litemplate">
             <a class="horse" data-id="" href="javascript:void(0);">
                 <img src="/images/horse-js.png" width="125" height="125" />
             </a>
             <p class="quote"></p>
-        </li>
+            </li>
+        </ul>
+        <script src="/js/soundmanager2-nodebug-jsmin.js"></script>
+        <script type="text/javascript" src="http://horsejs.local:8000/faye/client.js"></script>
+        <script type="text/javascript" src="/js/bufferloader.js"></script>
+        <script type="text/javascript" src="/js/ghosthorseclient.js"></script>
     </body>
 </html>

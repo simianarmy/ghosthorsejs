@@ -45,9 +45,19 @@ function GhostHorseClient () {
             soundManager.createSound({url: '/audio/649282_SOUNDDOGS__an.mp3'}).play();
         }
     });
-    jQuery.getJSON('/config.json', function(data) {
-        self.init(data);
+    jQuery.ajax({url: 'http://horsejs.local:8000/config.json?callback=?', 
+        dataType: 'jsonp',
+        jsonpCallback: 'parseConfig',
+        contentType: "application/json",
+        success: self.init,
+        error: function (data) {
+            console.error(data);
+        }
     });
+}
+
+function parseConfig (data) {
+    console.log('jsonp data', data);
 }
 
 /**
