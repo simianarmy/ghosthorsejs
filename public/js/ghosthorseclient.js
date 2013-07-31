@@ -39,13 +39,13 @@ function GhostHorseClient () {
         url: '/swf',
         flashVersion: 9, // optional: shiny features (default = 8)
         // optional: ignore Flash where possible, use 100% HTML5 mode
-        // preferFlash: false,
+        preferFlash: false,
         onready: function() {
             // Ready to use; soundManager.createSound() etc. can now be called.
             soundManager.createSound({url: '/audio/649282_SOUNDDOGS__an.mp3'}).play();
         }
     });
-    jQuery.ajax({url: 'http://horsejs.local:8000/config.json?callback=?', 
+    jQuery.ajax({url: 'http://horsejs.com:8000/config.json?callback=?', 
         dataType: 'jsonp',
         jsonpCallback: 'parseConfig',
         contentType: "application/json",
@@ -107,15 +107,17 @@ GhostHorseClient.prototype._createEventHandlers = function () {
             tid = el.data('id'),
             t = self._processed[tid];
 
-        console.log('tweet ', t);
-        soundManager.createSound({
-            id: tid,
-            url: t.audioFile,
-            onfinish: function () {
-                // display full text
-                $('p.quote', el.parent()).text(t.text).show();
-            }
-        }).play();
+        if (typeof t !== 'undefined') {
+            console.log('tweet ', t);
+            soundManager.createSound({
+                id: tid,
+                url: t.audioFile,
+                onfinish: function () {
+                    // display full text
+                    $('p.quote', el.parent()).text(t.text).show();
+                }
+            }).play();
+        }
     });
 };
 
