@@ -5,7 +5,7 @@ Node / client app to speak horse_js tweets
 
 Installation
 ============
-> git clone git@github.com:simianarmy/ghosthorsejs.git
+> git clone git@github.com:simianarmy/ghosthorsejs.git  
 > cd ghosthorsejs
 
 * Edit server.js configuration blob keys: nodeHost, nodePort, audioHost to point
@@ -13,10 +13,12 @@ to your local dev server
 
 * Run the dev server - it reloads anytime you make a change to a file
 
-> NODE_PATH=. node run_dev_server.js 
-
 * There's some bullshit NODE_PATH b.s. that will probably break all over the
-  place.  I wish I could say it was an easy fix...
+  place.  Here's what mine looks like in my .bashrc
+
+export NODE_PATH=$NODE_PATH:/usr/local/lib/jsctags:/Users/marcmauger/Documents/code/javascript/ghosthorsejs/node_modules:/Users/marcmauger/.nvm/v0.10.13/lib/node_modules
+
+> node run_dev_server.js 
 
 * open browser to nodeHost value
 
