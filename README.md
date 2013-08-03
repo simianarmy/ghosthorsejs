@@ -15,6 +15,9 @@ to your local dev server
 
 > NODE_PATH=. node run_dev_server.js 
 
+* There's some bullshit NODE_PATH b.s. that will probably break all over the
+  place.  I wish I could say it was an easy fix...
+
 * open browser to nodeHost value
 
 Architecture
