@@ -105,20 +105,43 @@ GhostHorseClient.prototype._createEventHandlers = function () {
     jQuery('ul#audio').on('click', 'a.horse', function (el) {
         var el = $(el.currentTarget),
             tid = el.data('id'),
-            t = self._processed[tid];
+            t = self._processed[tid],
+            sid = String(tid),
+            sound;
 
         if (typeof t !== 'undefined') {
             console.log('tweet ', t);
-            soundManager.createSound({
-                id: tid,
+            sound = soundManager.createSound({
+                id: sid,
                 url: t.audioFile,
-                onfinish: function () {
-                    // display full text
-                    $('p.quote', el.parent()).text(t.text).show();
+                onload: function () {
+                    self._displaySpokenText(el, t.text, this.duration || this.durationEstimate);
                 }
-            }).play();
+            });
+            // This doesn't work!
+            /*
+            soundManager.onPosition(sid, 1000, function (eventPosition) {
+                console.log(this.id+' reached '+eventPosition);
+            });
+            */
+            sound.play();
         }
     });
+};
+
+GhostHorseClient.prototype._displaySpokenText = function (el, tweet, duration) {
+    var textEl = $('p.quote', el.parent()),
+        words = tweet.split(' '),
+        numWords = Math.max(words.length, 1),
+        frequency = duration / (numWords + 1),
+        count = 1;
+    
+    setTimeout(function foo () {
+        textEl.text(words.slice(0, count).join(' '));
+        if (count++ < numWords) {
+            setTimeout(foo, frequency);
+        }
+    }, frequency);
 };
 
 GhostHorseClient.prototype._onAudioLoaded = function (bufferList) {
