@@ -8,3 +8,6 @@ ul#audio li {
     font-size: 1.5em
     margin: 10px
 }
+ul#audio li img.speaking {
+    -webkit-filter: invert(1);
+}

@@ -1,3 +1,7 @@
+// EDIT THIS FOR DEVELOPMENT...SORRY!
+//
+var CONFIG_URL = 'http://horsejs.com:8000/config.json?callback=?';
+
 function GhostHorseClient () {
     if (! (this instanceof GhostHorseClient)) {
         return new GhostHorseClient(arguments);
@@ -6,6 +10,7 @@ function GhostHorseClient () {
 
     this._processed = {};
     this._audioContext;
+    this._tweetCount = 0;
 
     this.init = function (settings) {
         self.setupBayeuxHandlers(settings);
@@ -45,7 +50,7 @@ function GhostHorseClient () {
             soundManager.createSound({url: '/audio/649282_SOUNDDOGS__an.mp3'}).play();
         }
     });
-    jQuery.ajax({url: 'http://horsejs.com:8000/config.json?callback=?', 
+    jQuery.ajax({url: CONFIG_URL, 
         dataType: 'jsonp',
         jsonpCallback: 'parseConfig',
         contentType: "application/json",
@@ -91,8 +96,10 @@ GhostHorseClient.prototype._processTweets = function (data) {
     // Traditional html5 audio used here
     data.forEach(function (t) {
         var node = $('#litemplate').clone();
+        var degrees = (self._tweetCount++ * 20) % 360;
         $('a.horse', node).data('id', t.id);
         $('p.quote', node).text(t.text.split(' ')[0]);
+        node.css('-webkit-filter', 'hue-rotate(' + degrees + 'deg)');
         // only show first word? 
         $('#audio').prepend(node);
         self._processed[t.id] = t;
@@ -116,6 +123,12 @@ GhostHorseClient.prototype._createEventHandlers = function () {
                 url: t.audioFile,
                 onload: function () {
                     self._displaySpokenText(el, t.text, this.duration || this.durationEstimate);
+                },
+                onplay: function () {
+                    $('img', el.parent()).addClass('speaking');
+                },
+                onfinish: function () {
+                    $('img', el.parent()).removeClass('speaking');
                 }
             });
             // This doesn't work!
@@ -156,8 +169,6 @@ GhostHorseClient.prototype._onAudioLoaded = function (bufferList) {
     });
 };
 
-var ghClient;
-
 jQuery(function () {
-   ghClient = new GhostHorseClient();
+   new GhostHorseClient();
 });
