@@ -125,10 +125,10 @@ GhostHorseClient.prototype._createEventHandlers = function () {
                     self._displaySpokenText(el, t.text, this.duration || this.durationEstimate);
                 },
                 onplay: function () {
-                    $('img', el.parent()).addClass('speaking');
+                    el.parent().addClass('speaking');
                 },
                 onfinish: function () {
-                    $('img', el.parent()).removeClass('speaking');
+                    el.parent().removeClass('speaking');
                 }
             });
             // This doesn't work!
