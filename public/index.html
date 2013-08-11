@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="/css/application.css" type="text/css"/>
-        <link href='http://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css'>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    </head>
-    <body>
-        HORSEJS.COM
+  <head>
+    <title>HORSEJS.COM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="/css/application.css" type="text/css"/>
+    <link href='http://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+      <h1>HORSEJS.COM</h1>
         <ul id="audio">
             <li id="litemplate">
             <a class="horse" data-id="" href="javascript:void(0);">
@@ -15,9 +18,14 @@
             <p class="quote"></p>
             </li>
         </ul>
+        <!-- JavaScript plugins (requires jQuery) -->
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+
         <script src="/js/soundmanager2-nodebug-jsmin.js"></script>
         <script type="text/javascript" src="http://horsejs.com:8000/faye/client.js"></script>
         <script type="text/javascript" src="/js/bufferloader.js"></script>
         <script type="text/javascript" src="/js/ghosthorseclient.js"></script>
-    </body>
+  </body>
 </html>

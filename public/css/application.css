@@ -1,6 +1,10 @@
 body {
     font-family: 'Cutive Mono', serif;
 }
+h1 {
+    color: rgba(0,168,255,0.5);
+    text-shadow: 3px 5px 0 rgba(255,0,180,0.5);
+}
 ul#audio {
     list-style: none;
 }
