@@ -1,5 +1,5 @@
 audio
 public/audio
 lib/twitterconfig.js
-*.mp3
-*.aac
+audio/*.mp3
+auido/*.aac
