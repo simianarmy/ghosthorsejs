@@ -3,6 +3,8 @@ ghosthorsejs
 
 Node / client app to speak horse_js tweets
 
+Live at http://horsejs.com
+
 Installation
 ============
 > git clone git@github.com:simianarmy/ghosthorsejs.git  
