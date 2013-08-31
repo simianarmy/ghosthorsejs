@@ -16,6 +16,7 @@ ul#audio li.speaking {
     font-size: 60px;
     color: rgba(0,168,255,0.5);
     text-shadow: 3px 5px 0 rgba(255,0,180,0.5);
+    -webkit-transition: -webkit-filter ease-in-out 1.0s;
 }
 ul#audio li.speaking img {
     -webkit-filter: invert(1);

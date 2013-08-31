@@ -1,2 +1,3 @@
-public/audio
+public/audio/*.aac
+public/audio/*.aac.mp3
 lib/twitterconfig.js
