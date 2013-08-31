@@ -5,6 +5,8 @@ Node / client app to speak horse_js tweets
 
 Live at http://horsejs.com
 
+**Live site runs on the stable branch
+
 Installation
 ============
 > git clone git@github.com:simianarmy/ghosthorsejs.git  
