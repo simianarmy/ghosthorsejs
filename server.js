@@ -15,7 +15,8 @@ process.addListener('uncaughtException', function (err, stack) {
  * Start app!
  */
 new ghostHorse({
-    nodeHost: 'http://horsejs.com',
-    nodePort: 8000,
-    audioHost: 'http://horsejs.com'
+    nodeHost: 'localhost',
+    nodePort: 8001,
+    audioHost: 'http://neighs.horsejs.com',
+    audioPath: '/Users/marcmauger/Sites/neighs.horsejs.com/public/audio'
 });
