@@ -1,0 +1,10 @@
+{
+  "name": "ghosthorsejs",
+  "description": "@horse_js spoken tweets api",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.3.7",
+    "aws-sdk": ">= 1.5.0"
+  }
+}
