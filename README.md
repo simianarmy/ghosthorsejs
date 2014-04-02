@@ -1,11 +1,9 @@
 ghosthorsejs
 ============
 
-Node / client app to speak horse_js tweets
+Node server app to speak horse_js tweets
 
-Live at www.horsejs.com
-
-Live site runs on the 'stable' branch
+Web site lives at https://github.com/simianarmy/horsejs.com
 
 Installation
 ============
