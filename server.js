@@ -18,4 +18,4 @@ new ghostHorse({
     nodeHost: 'localhost',
     nodePort: 8001,
     audioPath: '/Users/marcmauger/Sites/neighs.horsejs.com/public/audio'
-});
+}).init();
