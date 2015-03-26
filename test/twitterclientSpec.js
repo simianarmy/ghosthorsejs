@@ -5,7 +5,6 @@ var expect = require("chai").expect,
 describe('TwitterClient', function () {
 
     var tc;
-    var oconsole = console;
 
     before(function () {
         tc = new TwitterClient();
@@ -30,7 +29,6 @@ describe('TwitterClient', function () {
 
         it('should be able to fetch timeline posts', function (done) {
             tc.homeTimeline({}, function (err, json) {
-                console.log(json);
                 if (err) throw err;
                 expect(json).to.be.ok();
                 done();

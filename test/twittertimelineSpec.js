@@ -20,7 +20,6 @@ describe('TwitterTimeline', function () {
     
         it('should be able to fetch timeline posts', function (done) {
             tm.monitor(function (json) {
-                console.log(json);
                 expect(json).to.be.ok();
                 done();
             });
