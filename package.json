@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "express": "3.3.7",
-    "aws-sdk": ">= 1.5.0"
+    "aws-sdk": ">= 1.5.0",
+    "winston": "1.0.1"
   }
 }
