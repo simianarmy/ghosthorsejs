@@ -4,3 +4,4 @@ lib/twitterconfig.js
 audio/*.mp3
 auido/*.aac
 lib/appconfig.js
+*.log
