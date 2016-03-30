@@ -1,7 +1,7 @@
 /**
  * Application main()
  */
-var ghostHorse = require('lib/ghosthorse');
+var ghostHorse = require('./lib/ghosthorse');
 
 /**
  * Global error handler
