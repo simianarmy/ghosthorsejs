@@ -85,7 +85,6 @@ describe('DataStore', function () {
                     expect(res.accountId).to.equal(aid);
                     expect(res.tid).to.equal(tid+'');
                     expect(res.text).to.equal(data.text);
-                    expect(res.objectId).to.be.ok();
                 });
             });
         });
