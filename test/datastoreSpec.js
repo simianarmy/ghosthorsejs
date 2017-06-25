@@ -35,7 +35,7 @@ describe('DataStore', function () {
             var aid = 3;
             var tid = '777178779391299600';
             ds.getHorseTweet(aid, tid, function (err, tweet) {
-                expect(tweet).to.be.ok();
+                expect(tweet.id).to.be.ok();
                 done();
             });
         });
@@ -86,6 +86,31 @@ describe('DataStore', function () {
                     expect(res.tid).to.equal(tid+'');
                     expect(res.text).to.equal(data.text);
                 });
+            });
+        });
+    });
+
+    describe('marking object as tweeted', function() {
+        var aid = 666;
+        var tid = Date.now(); // enforce uniqueness of tid
+
+        beforeEach(function(done) {
+            var data = {
+                id: tid,
+                text: 'twitStatus field update test',
+                twitStatus: 'FOO'
+            };
+            ds.saveHorseTweet(aid, data).then(function (res) {
+                console.log('SAVED THIS', res);
+                done();
+            });
+        });
+
+        it('should update status field with posted constant', function(done) {
+            ds.markHorseTweetComplete(aid, tid, function (err, res) {
+                expect(err).to.equal(null);
+                expect(res.twitStatus).to.equal('POSTED');
+                done();
             });
         });
     });

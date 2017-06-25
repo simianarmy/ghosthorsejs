@@ -7,5 +7,8 @@
     "express": "3.3.7",
     "aws-sdk": ">= 1.5.0",
     "winston": "1.0.1"
+  },
+  "devDependencies": {
+    "mocha": "^3.4.2"
   }
 }

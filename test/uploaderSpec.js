@@ -3,22 +3,16 @@ var expect = require("chai").expect,
     config = require('../lib/appconfig.js')
  
 describe("AudioUploader", function() {
-    var s3Config, scConfig;
+    var s3Config;
 
     beforeEach(function () {
-        s3Config = config.S3,
-        scConfig = config.Soundcloud
+        s3Config = config.S3;
     });
 
     describe("constructor", function () {
         it("should create AWS client", function () {
-            var up = new uploader({S3: s3Config, SC: scConfig});
-            expect(up.s3).to.be.ok();
-        });
-
-        it("should create Soundcloud client", function () {
-            var up = new uploader({S3: s3Config, SC: scConfig});
-            expect(up.scClient).to.be.ok();
+            var up = new uploader({S3: s3Config});
+            expect(up.s3Client).to.be.ok();
         });
     });
 });
