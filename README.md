@@ -1,5 +1,5 @@
 # ghosthorsejs
-> Node server app to speak horse_js tweets
+> Node server app to speak arbitrary Twitter user tweets
 
 Web site lives at https://github.com/simianarmy/horsejs.com
 
