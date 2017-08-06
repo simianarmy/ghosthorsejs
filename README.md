@@ -28,7 +28,9 @@ node app.js
 
 ## Related Software
 [Horsin Around](https://github.com/simianarmy/horsejs.com)
+
 [Twhispr API](https://github.com/simianarmy/twhispr-api)
+
 [Twitter Audio Cards](https://github.com/simianarmy/twhispr.com)
 
 ## Notes
