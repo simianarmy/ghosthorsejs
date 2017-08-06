@@ -9,8 +9,9 @@ Web site lives at https://github.com/simianarmy/horsejs.com
 git clone git@github.com:simianarmy/ghosthorsejs.git
 cd ghosthorsejs
 ```
-
 ## Running
+
+Get the secret config file and move it to lib/appconfig.js
 
 ```
 node app.js
