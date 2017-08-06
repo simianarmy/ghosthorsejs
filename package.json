@@ -4,8 +4,8 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "aws-sdk": "^2.94.0",
     "express": "3.3.7",
-    "aws-sdk": ">= 1.5.0",
     "winston": "1.0.1"
   },
   "devDependencies": {
