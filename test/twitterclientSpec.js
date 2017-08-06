@@ -5,6 +5,7 @@ var expect = require("chai").expect,
 describe('TwitterClient', function () {
 
     var tc;
+    var TestAccount = 'realDonaldTrump';
 
     before(function () {
         tc = new TwitterClient();
@@ -20,8 +21,9 @@ describe('TwitterClient', function () {
     describe('fetching tweets', function () {
 
         it('should be able to search public accounts', function (done) {
-            tc.search('horse_js', {}, function (err, json) {
+            tc.search(TestAccount, {}, function (err, json) {
                 if (err) throw err;
+                console.log('search results', json);
                 expect(json).to.be.ok();
                 done();
             });
