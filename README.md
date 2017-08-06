@@ -1,8 +1,6 @@
 # ghosthorsejs
 > Node server app to speak arbitrary Twitter user tweets
 
-Web site lives at https://github.com/simianarmy/horsejs.com
-
 ## Installation
 
 ```
@@ -27,6 +25,11 @@ node app.js
 
   Express-powered front end at www.twhispr.com serves pages for Twitter
   Audio Cards API
+
+## Related Software
+[Horsin Around](https://github.com/simianarmy/horsejs.com)
+[Twhispr API](https://github.com/simianarmy/twhispr-api)
+[Twitter Audio Cards](https://github.com/simianarmy/twhispr.com)
 
 ## Notes
 
